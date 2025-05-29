@@ -22,7 +22,7 @@ const nextConfig = {
     // Disable features that create symlinks - use empty array instead of false
     optimizePackageImports: [],
   },
-  // Configure for Netlify deployment
+  // Configure for Netlify deployment - remove standalone output
   images: {
     unoptimized: true,
   },
@@ -35,8 +35,6 @@ const nextConfig = {
     // number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 2,
   },
-  // Enable standalone output for better Netlify compatibility
-  output: 'standalone',
 }
 
 module.exports = nextConfig
