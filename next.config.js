@@ -17,30 +17,12 @@ const nextConfig = {
     
     return config;
   },
-  // Disable experimental features that cause OneDrive issues
-  experimental: {
-    // Disable features that create symlinks - use empty array instead of false
-    optimizePackageImports: [],
-    // Disable turbo for OneDrive compatibility
-    turbo: false,
-  },
   // Configure for Netlify deployment
   images: {
     unoptimized: true,
   },
-  // Asset prefix for proper static file serving
-  assetPrefix: '',
-  // Disable file system cache completely
-  onDemandEntries: {
-    maxInactiveAge: 25 * 1000,
-    pagesBufferLength: 2,
-  },
   // Force disable caching
   generateEtags: false,
-  // Ensure proper serverless function generation
-  output: undefined, // Let Netlify plugin handle this
-  // Disable build cache
-  distDir: '.next',
 }
 
 module.exports = nextConfig
