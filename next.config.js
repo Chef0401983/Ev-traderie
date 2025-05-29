@@ -21,6 +21,8 @@ const nextConfig = {
   experimental: {
     // Disable features that create symlinks - use empty array instead of false
     optimizePackageImports: [],
+    // Disable turbo for OneDrive compatibility
+    turbo: false,
   },
   // Configure for Netlify deployment
   images: {
@@ -28,13 +30,17 @@ const nextConfig = {
   },
   // Asset prefix for proper static file serving
   assetPrefix: '',
-  // Disable file system cache
+  // Disable file system cache completely
   onDemandEntries: {
-    // period (in ms) where the server will keep pages in the buffer
     maxInactiveAge: 25 * 1000,
-    // number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 2,
   },
+  // Force disable caching
+  generateEtags: false,
+  // Ensure proper serverless function generation
+  output: undefined, // Let Netlify plugin handle this
+  // Disable build cache
+  distDir: '.next',
 }
 
 module.exports = nextConfig

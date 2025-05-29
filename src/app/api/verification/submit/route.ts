@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { createClient } from '@supabase/supabase-js';
+import { createServiceRoleClient } from '@/lib/supabase/server';
 import { sendWelcomeEmail, sendVerificationSubmittedEmail } from '@/lib/email/helpers';
 
 export async function POST(request: NextRequest) {
@@ -12,15 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create service role client to bypass RLS policies
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    
-    if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Missing Supabase environment variables');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
-    }
-    
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createServiceRoleClient();
 
     const body = await request.json();
     const {
