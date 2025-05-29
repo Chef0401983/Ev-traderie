@@ -22,7 +22,7 @@ const nextConfig = {
     // Disable features that create symlinks - use empty array instead of false
     optimizePackageImports: [],
   },
-  // Configure for Netlify deployment - remove standalone output
+  // Configure for Netlify deployment
   images: {
     unoptimized: true,
   },
