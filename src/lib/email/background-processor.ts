@@ -62,7 +62,7 @@ class EmailBackgroundProcessor {
 // Export singleton instance
 export const emailProcessor = new EmailBackgroundProcessor();
 
-// Auto-start in production
-if (process.env.NODE_ENV === 'production') {
+// Auto-start in production (but not during build)
+if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
   emailProcessor.start();
 }

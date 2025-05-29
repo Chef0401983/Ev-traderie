@@ -5,11 +5,29 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 // Create a single supabase client for the entire app
-export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+let supabaseInstance: SupabaseClient | null = null;
+
+export function getSupabase(): SupabaseClient {
+  if (!supabaseInstance && supabaseUrl && supabaseAnonKey) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  if (!supabaseInstance) {
+    throw new Error('Supabase client not initialized - missing environment variables');
+  }
+  return supabaseInstance;
+}
+
+// For backward compatibility
+export const supabase = {
+  get from() { return getSupabase().from.bind(getSupabase()); },
+  get auth() { return getSupabase().auth; },
+  get storage() { return getSupabase().storage; },
+  get rpc() { return getSupabase().rpc.bind(getSupabase()); }
+};
 
 // Helper function to get user data from Supabase
 export async function getUserProfile(userId: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('profiles')
     .select('*')
     .eq('user_id', userId)
@@ -25,7 +43,7 @@ export async function getUserProfile(userId: string) {
 
 // Helper function to create or update user profile
 export async function upsertUserProfile(profile: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('profiles')
     .upsert(profile, { onConflict: 'user_id' })
     .select();
