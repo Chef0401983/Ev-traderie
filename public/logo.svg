@@ -1,0 +1,21 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car outline with charging plug -->
+  <g fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Car body -->
+    <path d="M15 35 L15 30 Q15 25 20 25 L25 25 Q30 20 35 20 L50 20 Q55 20 60 25 L65 25 Q70 25 70 30 L70 35"/>
+    <!-- Car wheels -->
+    <circle cx="25" cy="35" r="5"/>
+    <circle cx="60" cy="35" r="5"/>
+    <!-- Charging plug -->
+    <path d="M5 25 Q5 20 10 20 L15 20"/>
+    <path d="M8 17 L8 23"/>
+    <path d="M12 17 L12 23"/>
+  </g>
+  
+  <!-- EV-Trader text -->
+  <text x="85" y="25" font-family="Poppins, sans-serif" font-size="20" font-weight="600" fill="#22C55E">EV</text>
+  <text x="115" y="25" font-family="Poppins, sans-serif" font-size="20" font-weight="600" fill="#374151">-Trader</text>
+  
+  <!-- Tagline -->
+  <text x="85" y="40" font-family="Lato, sans-serif" font-size="10" fill="#6B7280">Irish Electric Vehicle Marketplace</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car Icon -->
+  <g fill="#22C55E">
+    <!-- Car Body -->
+    <path d="M20 70 C20 65 23 60 28 60 L35 60 C40 55 48 50 55 50 L100 50 C107 50 115 55 120 60 L127 60 C132 60 135 65 135 70 L135 80 L120 80 C120 85 117 90 112 90 C107 90 102 85 102 80 L53 80 C53 85 48 90 43 90 C38 90 33 85 33 80 L20 80 Z"/>
+    
+    <!-- Car Windows -->
+    <path d="M35 60 L35 40 C35 35 38 30 43 30 L112 30 C117 30 120 35 120 40 L120 60" fill="none" stroke="#22C55E" stroke-width="3"/>
+    
+    <!-- Wheels -->
+    <circle cx="43" cy="85" r="8" fill="#22C55E"/>
+    <circle cx="112" cy="85" r="8" fill="#22C55E"/>
+    <circle cx="43" cy="85" r="4" fill="white"/>
+    <circle cx="112" cy="85" r="4" fill="white"/>
+    
+    <!-- Charging Plug -->
+    <path d="M5 65 L20 65" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+    <rect x="0" y="60" width="10" height="10" rx="2" fill="#22C55E"/>
+    <line x1="2" y1="62" x2="2" y2="68" stroke="white" stroke-width="1"/>
+    <line x1="8" y1="62" x2="8" y2="68" stroke="white" stroke-width="1"/>
+  </g>
+  
+  <!-- EV-Trader Text -->
+  <text x="160" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#22C55E">EV-Trader</text>
+</svg>
