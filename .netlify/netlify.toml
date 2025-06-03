@@ -12,7 +12,7 @@ package = "@netlify/plugin-nextjs"
 [plugins.inputs]
 
 [build]
-publish = "C:\\Users\\justin.fuller\\OneDrive - EV Bits\\Windsurf\\Ev3\\ev-trader\\.next"
+publish = "C:\\Users\\justin.fuller\\Desktop\\ev-trader\\.next"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
