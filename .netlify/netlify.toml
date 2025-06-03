@@ -6,7 +6,7 @@ redirects = []
 [functions."*"]
 
 [[plugins]]
-origin = "default"
+origin = "config"
 package = "@netlify/plugin-nextjs"
 
 [plugins.inputs]
@@ -20,6 +20,8 @@ command = "npm run build"
 [build.environment]
 NODE_VERSION = "18"
 NPM_FLAGS = "--production=false"
+NEXT_TELEMETRY_DISABLED = "1"
+NODE_OPTIONS = "--max-old-space-size=4096"
 
 [build.processing]
 
