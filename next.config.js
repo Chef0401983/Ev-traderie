@@ -38,10 +38,6 @@ const nextConfig = {
   // CRITICAL: Disable static optimization completely
   experimental: {
     serverComponentsExternalPackages: ['@clerk/nextjs'],
-    // Disable static optimization
-    staticPageGenerationTimeout: 0,
-    // Force dynamic rendering
-    isrMemoryCacheSize: 0,
   },
   
   // Force server-side rendering for all pages
