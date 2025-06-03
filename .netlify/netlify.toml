@@ -1,9 +1,11 @@
+redirectsOrigin = "config"
 headers = []
-redirects = []
 
 [functions]
 
 [functions."*"]
+external_node_modules = ["@clerk/nextjs"]
+node_bundler = "esbuild"
 
 [[plugins]]
 origin = "config"
@@ -19,9 +21,11 @@ command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "18"
-NPM_FLAGS = "--production=false"
+NPM_FLAGS = "--legacy-peer-deps"
 NEXT_TELEMETRY_DISABLED = "1"
 NODE_OPTIONS = "--max-old-space-size=4096"
+NEXT_PRIVATE_STANDALONE = "true"
+NEXT_PRIVATE_TARGET = "server"
 
 [build.processing]
 
@@ -34,3 +38,15 @@ NODE_OPTIONS = "--max-old-space-size=4096"
 [build.processing.js]
 
 [build.services]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

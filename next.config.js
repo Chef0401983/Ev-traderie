@@ -35,6 +35,18 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
+  // CRITICAL: Disable static optimization completely
+  experimental: {
+    serverComponentsExternalPackages: ['@clerk/nextjs'],
+    // Disable static optimization
+    staticPageGenerationTimeout: 0,
+    // Force dynamic rendering
+    isrMemoryCacheSize: 0,
+  },
+  
+  // Force server-side rendering for all pages
+  trailingSlash: false,
+  
   // Security headers
   async headers() {
     return [
@@ -48,6 +60,10 @@ const nextConfig = {
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
           },
           {
             key: 'Referrer-Policy',
@@ -69,44 +85,6 @@ const nextConfig = {
       }
     ];
   },
-  
-  // Redirects for SEO
-  async redirects() {
-    return [
-      // Redirect common variations to canonical URLs
-      {
-        source: '/vehicle/:id',
-        destination: '/vehicles/:id',
-        permanent: true,
-      },
-      {
-        source: '/car/:id',
-        destination: '/vehicles/:id',
-        permanent: true,
-      },
-      {
-        source: '/ev/:id',
-        destination: '/vehicles/:id',
-        permanent: true,
-      },
-      // Redirect old search patterns
-      {
-        source: '/search',
-        destination: '/vehicles',
-        permanent: true,
-      },
-      {
-        source: '/browse',
-        destination: '/vehicles',
-        permanent: true,
-      }
-    ];
-  },
-  
-  // Enable experimental features for better SEO
-  experimental: {
-    optimizePackageImports: ['@/components', '@/lib'],
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

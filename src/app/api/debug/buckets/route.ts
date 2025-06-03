@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
@@ -26,3 +29,4 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to list buckets' }, { status: 500 });
   }
 }
+

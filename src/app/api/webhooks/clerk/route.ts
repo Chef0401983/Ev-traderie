@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { headers } from 'next/headers';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
@@ -133,3 +136,4 @@ async function syncUserToSupabase(userData: any, sendWelcome: boolean = false) {
 
   return data;
 }
+
