@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
@@ -25,15 +25,34 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-export default function VehicleDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+export default function VehicleDetailPage({ params }: { params: { id: string } | Promise<{ id: string }> }) {
+  // Handle both Promise and non-Promise params
+  const getId = () => {
+    if (params && typeof params === 'object' && 'then' in params) {
+      return '';
+    }
+    return (params as { id: string }).id;
+  };
+
+  const [id, setId] = useState(getId());
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  // Handle Promise-based params
   useEffect(() => {
-    fetchVehicle();
+    if (params && typeof params === 'object' && 'then' in params) {
+      (params as Promise<{ id: string }>).then((resolvedParams) => {
+        setId(resolvedParams.id);
+      });
+    }
+  }, [params]);
+
+  useEffect(() => {
+    if (id) {
+      fetchVehicle();
+    }
   }, [id]);
 
   const fetchVehicle = async () => {

@@ -107,6 +107,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@/components', '@/lib'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig

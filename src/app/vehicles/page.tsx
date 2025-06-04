@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import VehicleCard from '@/components/vehicles/VehicleCard';
 import VehicleFilters from '@/components/vehicles/VehicleFilters';
@@ -12,9 +12,18 @@ import StandardLayout from '@/components/layout/StandardLayout';
 export default function VehiclesPage({ 
   searchParams 
 }: { 
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }> 
+  searchParams: { [key: string]: string | string[] | undefined } | Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const resolvedSearchParams = use(searchParams);
+  // Handle both Promise and non-Promise searchParams
+  const getSearchParams = () => {
+    if (searchParams && typeof searchParams === 'object' && 'then' in searchParams) {
+      // It's a Promise, need to handle it differently
+      return {};
+    }
+    return searchParams as { [key: string]: string | string[] | undefined };
+  };
+
+  const resolvedSearchParams = getSearchParams();
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,6 +33,17 @@ export default function VehiclesPage({
     typeof resolvedSearchParams.searchTerm === 'string' ? resolvedSearchParams.searchTerm : ''
   );
   const [filters, setFilters] = useState({});
+
+  // Handle Promise-based searchParams
+  useEffect(() => {
+    if (searchParams && typeof searchParams === 'object' && 'then' in searchParams) {
+      (searchParams as Promise<{ [key: string]: string | string[] | undefined }>).then((params) => {
+        if (params.searchTerm && typeof params.searchTerm === 'string') {
+          setSearchTerm(params.searchTerm);
+        }
+      });
+    }
+  }, [searchParams]);
 
   // Fetch vehicles from API
   useEffect(() => {

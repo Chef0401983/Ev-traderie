@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useUser } from '@clerk/nextjs';
 
 interface VerificationData {
@@ -38,7 +38,7 @@ export function useVerification(): UseVerificationReturn {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchVerificationStatus = async () => {
+  const fetchVerificationStatus = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -60,7 +60,7 @@ export function useVerification(): UseVerificationReturn {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -68,7 +68,7 @@ export function useVerification(): UseVerificationReturn {
     } else if (isLoaded && !user) {
       setIsLoading(false);
     }
-  }, [isLoaded, user]);
+  }, [isLoaded, user, fetchVerificationStatus]);
 
   const isVerified = profile?.verification_status === 'approved';
   const canCreateListings = profile?.can_create_listings || false;

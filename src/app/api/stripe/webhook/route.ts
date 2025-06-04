@@ -8,10 +8,24 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_your_key_her
 });
 
 // Webhook secret for verifying the event
-// In a real implementation, this would be stored in an environment variable
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || 'whsec_your_webhook_secret';
+// Get the webhook secret from environment variables
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+// Ensure webhook secret is configured
+if (!webhookSecret) {
+  console.error('STRIPE_WEBHOOK_SECRET is not configured in environment variables');
+}
 
 export async function POST(req: NextRequest) {
+  // Check if webhook secret is configured
+  if (!webhookSecret) {
+    console.error('STRIPE_WEBHOOK_SECRET is not configured');
+    return NextResponse.json(
+      { error: 'Webhook configuration error' },
+      { status: 500 }
+    );
+  }
+
   try {
     const body = await req.text();
     const signature = req.headers.get('stripe-signature') as string;

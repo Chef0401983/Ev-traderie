@@ -6,22 +6,18 @@ redirects = []
 [functions."*"]
 
 [[plugins]]
-origin = "config"
+origin = "default"
 package = "@netlify/plugin-nextjs"
 
 [plugins.inputs]
 
 [build]
 publish = "C:\\Users\\justin.fuller\\OneDrive - EV Bits\\Windsurf\\Ev3\\ev-trader\\.next"
-publishOrigin = "config"
-commandOrigin = "config"
-command = "npm run build"
+publishOrigin = "ui"
+commandOrigin = "ui"
+command = "pnpm run build"
 
 [build.environment]
-NODE_VERSION = "18"
-NPM_FLAGS = "--production=false"
-NEXT_TELEMETRY_DISABLED = "1"
-NODE_OPTIONS = "--max-old-space-size=4096"
 
 [build.processing]
 
