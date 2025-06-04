@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { createClient } from '@supabase/supabase-js';
 import { auth } from '@clerk/nextjs';
 import { NextRequest, NextResponse } from 'next/server';
@@ -63,3 +66,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+

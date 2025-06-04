@@ -1,11 +1,38 @@
 [build]
+<<<<<<< HEAD
   command = "npm run build"
+=======
+  command = "npm install --legacy-peer-deps && npm run build"
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
+<<<<<<< HEAD
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_OPTIONS = "--max_old_space_size=4096"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+=======
+  NPM_FLAGS = "--legacy-peer-deps"
+  NEXT_TELEMETRY_DISABLED = "1"
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  # Force server-side rendering
+  NEXT_PRIVATE_STANDALONE = "true"
+  NEXT_PRIVATE_TARGET = "server"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@clerk/nextjs"]
+  
+# Ensure all routes use server-side rendering
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+  force = false
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d

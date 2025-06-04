@@ -1,23 +1,40 @@
+redirectsOrigin = "config"
 headers = []
-redirects = []
 
 [functions]
 
 [functions."*"]
+external_node_modules = ["@clerk/nextjs"]
+node_bundler = "esbuild"
 
 [[plugins]]
-origin = "default"
+origin = "config"
 package = "@netlify/plugin-nextjs"
 
 [plugins.inputs]
 
 [build]
+<<<<<<< HEAD
 publish = "C:\\Users\\justin.fuller\\OneDrive - EV Bits\\Windsurf\\Ev3\\ev-trader\\.next"
 publishOrigin = "ui"
 commandOrigin = "ui"
 command = "pnpm run build"
 
 [build.environment]
+=======
+publish = "C:\\Users\\justin.fuller\\Desktop\\ev-trader\\.next"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "18"
+NPM_FLAGS = "--legacy-peer-deps"
+NEXT_TELEMETRY_DISABLED = "1"
+NODE_OPTIONS = "--max-old-space-size=4096"
+NEXT_PRIVATE_STANDALONE = "true"
+NEXT_PRIVATE_TARGET = "server"
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d
 
 [build.processing]
 
@@ -30,3 +47,15 @@ command = "pnpm run build"
 [build.processing.js]
 
 [build.services]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

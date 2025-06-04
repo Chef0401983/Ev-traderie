@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -98,3 +101,4 @@ async function handleFailedPayment(paymentIntent: Stripe.PaymentIntent) {
   
   console.log(`Payment failed for vehicle ${vehicleId} by user ${userId}`);
 }
+

@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { createClient } from '@supabase/supabase-js';
@@ -53,3 +56,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ isAdmin: false, error: 'Internal server error' }, { status: 500 });
   }
 }
+

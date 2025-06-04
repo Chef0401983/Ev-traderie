@@ -3,8 +3,15 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
+// Force dynamic rendering
+import './force-dynamic';
+
 // Initialize email system on server startup
 import '@/lib/email/init';
+
+// Force dynamic rendering for this layout
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export const metadata: Metadata = {
   title: {

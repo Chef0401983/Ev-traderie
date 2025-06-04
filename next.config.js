@@ -35,6 +35,17 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
+<<<<<<< HEAD
+=======
+  // CRITICAL: Disable static optimization completely
+  experimental: {
+    serverComponentsExternalPackages: ['@clerk/nextjs'],
+  },
+  
+  // Force server-side rendering for all pages
+  trailingSlash: false,
+  
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d
   // Security headers
   async headers() {
     return [
@@ -50,6 +61,13 @@ const nextConfig = {
             value: 'nosniff'
           },
           {
+<<<<<<< HEAD
+=======
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+          {
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
           },
@@ -69,6 +87,7 @@ const nextConfig = {
       }
     ];
   },
+<<<<<<< HEAD
   
   // Redirects for SEO
   async redirects() {
@@ -111,5 +130,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 }
+=======
+};
+>>>>>>> cffef9309ec471162ee5dfd2291f98f76bd7b03d
 
-module.exports = nextConfig
+module.exports = nextConfig;
