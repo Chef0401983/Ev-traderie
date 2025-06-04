@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# Optimize crawling for important pages
+Allow: /vehicles
+Allow: /vehicles/*
+Allow: /api/vehicles
+Allow: /dashboard
+Allow: /about
+Allow: /contact
+
+# Block admin and sensitive areas
+Disallow: /admin
+Disallow: /api/admin
+Disallow: /api/auth
+Disallow: /api/webhooks
+Disallow: /dashboard/*/messages
+Disallow: /sign-in
+Disallow: /sign-up
+
+# Block duplicate content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+
+# Allow important query parameters
+Allow: /*?search=*
+Allow: /*?make=*
+Allow: /*?model=*
+Allow: /*?location=*
+
+# Sitemap location
+Sitemap: https://ev-trader.ie/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
